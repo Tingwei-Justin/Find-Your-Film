@@ -1,0 +1,45 @@
+<div *ngIf="isLoad && reviews.length > 0" class="review-container">
+  <h1>
+    Reviews <span>{{ reviews.length }}</span>
+  </h1>
+
+  <div class="review-card-container">
+    <div *ngFor="let review of reviews" class="review-card-item row p-3 p-lg-5">
+      <div class="avatar-container col-12 col-lg-2 ml-3 ml-lg-0">
+        <img
+          [src]="getAvatarUrl(review.author_details.avatar_path)"
+          alt="avatar"
+          style="width: 64px; height: 64px"
+          class="rounded-circle"
+        />
+      </div>
+
+      <div class="content-container col-12 col-lg-10">
+        <div class="review-title row">
+          <span class="review-title-text col-12 col-lg-auto">
+            A review created by {{ review.author }} &nbsp;&nbsp;
+          </span>
+          <span
+            class="review-title-rate col-auto col-lg-auto"
+            style="margin-left: 15px"
+          >
+            <fa-icon
+              [icon]="faStar"
+              class="fa-1x"
+              style="color: white"
+            ></fa-icon>
+            {{ review.author_details.rating || 0 }}</span
+          >
+        </div>
+        <div class="review-time">
+          Written by {{ review.author }} on
+          {{ review.created_at | date: "MMMM d, y, h:mm:ss a" }}
+        </div>
+
+        <div class="review-content">{{ review.content }}</div>
+
+        <a class="rest-link" (click)="goToLink(review.url)">Read the rest</a>
+      </div>
+    </div>
+  </div>
+</div>

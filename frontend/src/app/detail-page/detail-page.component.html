@@ -1,0 +1,249 @@
+<div *ngIf="item != null" class="container detail-page-container">
+  <div class="row justify-content-center top-grid-container">
+    <div
+      class="col-10 col-lg-7 left-container embed-responsive embed-responsive-16by9"
+    >
+      <youtube-player
+        videoId="{{ videoKey }}"
+        suggestedQuality="highres"
+        class="embed-responsive-item"
+      >
+      </youtube-player>
+    </div>
+    <div class="col-11 col-lg-5 pl-lg-5 mt-4 mt-lg-0 right-container">
+      <div class="title">{{ item.name }}</div>
+      <div class="tagline font-italic content-color">{{ item.tagline }}</div>
+      <div class="tag content-color">
+        {{ item.year }} | &#9733; {{ item.vote_average }} | {{ item.runtime }}
+      </div>
+      <div class="generes">
+        Genres: <span class="content-color">{{ item.genres }}</span>
+      </div>
+      <div class="language">
+        Spoken Languages:
+        <span class="content-color">{{ item.spoken_languages }}</span>
+      </div>
+      <div class="button-container">
+        <button
+          *ngIf="!inWatchList"
+          type="button"
+          class="btn btn-primary"
+          (click)="addToWatchlist()"
+        >
+          <span class="button-text">Add to Watchlist</span>
+        </button>
+
+        <button
+          *ngIf="inWatchList"
+          type="button"
+          class="btn btn-primary"
+          (click)="removeFromWatchlist()"
+        >
+          <span class="button-text">Remove from Watchlist</span>
+        </button>
+
+        <ngb-alert
+          #selfClosingAlert
+          *ngIf="successMessage"
+          [type]="alertType"
+          class="alert"
+          (closed)="successMessage = ''"
+          >{{ successMessage }}
+        </ngb-alert>
+      </div>
+    </div>
+  </div>
+
+  <div class="middle-grid-container px-3">
+    <div *ngIf="item.description.length > 0" id="description">
+      <div class="mid-title">Description</div>
+      <div class="content-color mid-content">
+        {{ item.description }}
+      </div>
+    </div>
+    <div id="share">
+      <div class="mid-title">Share</div>
+      <div class="button-group">
+        <a
+          href="{{ twitterShareDomain }}text=Watch {{
+            encodeString(item.name)
+          }}%0a{{ youtubeDomain }}{{ videoKey }}%0a&hashtags={{ hashTags }}"
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+        >
+          <fa-icon
+            [icon]="faTwitter"
+            class="fa-2x"
+            style="color: #4090fa"
+          ></fa-icon>
+        </a>
+        <a
+          href="https://www.facebook.com/sharer/sharer.php?u={{
+            youtubeDomain
+          }}{{ videoKey }}&amp;src=sdkpreparse"
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+        >
+          <fa-icon
+            [icon]="faFacebook"
+            class="fa-2x"
+            style="color: blue"
+          ></fa-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-grid-container px-3">
+    <div *ngIf="casts.length > 0" class="cast-section">
+      <h1>Full Cast and Crew</h1>
+      <div
+        class="d-flex flex-row flex-nowrap overflow-auto custom-scrollbar-cast"
+      >
+        <div
+          *ngFor="let cast of casts"
+          (click)="openLg(content, cast.id)"
+          class="col-6 col-lg-2"
+          style="padding: 10px"
+        >
+          <div
+            *ngIf="!cast.profile_path.includes('null')"
+            class="card custom-card"
+          >
+            <img
+              class="card-img-top custom-card-img-top"
+              [src]="cast.profile_path"
+              alt="Card image cap"
+            />
+            <div class="card-body card-text">
+              <div class="actor-name">{{ cast.name }}</div>
+              <div class="actor-name">AS</div>
+              <div class="cast-name">{{ cast.character }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-reviews [media]="media"></app-reviews>
+  </div>
+
+  <div class="mb-4 mx-5">
+    <app-carousel-section
+      [category]="recommend"
+      [isMobile]="isMobile"
+    ></app-carousel-section>
+    <app-carousel-section
+      [category]="similar"
+      [isMobile]="isMobile"
+    ></app-carousel-section>
+  </div>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 *ngIf="person && person.name" class="modal-title">
+        {{ person.name }}
+      </h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="custom-scrollbar">
+      <div class="modal-body">
+        <div class="modal-body-top-container row justify-content-start">
+          <div
+            *ngIf="person && person.profile_path"
+            class="image-container col-12 col-lg-3"
+          >
+            <img
+              [src]="person.profile_path"
+              alt="Card image cap"
+              style="width: 100%"
+            />
+          </div>
+          <div class="info-container model-light-text col-12 col-lg-9">
+            <div *ngIf="person && person.birthday">
+              Birth: {{ person.birthday }}
+            </div>
+            <div *ngIf="person && person.place_of_birth">
+              Birth Place: {{ person.place_of_birth }}
+            </div>
+            <div *ngIf="person && person.gender">
+              Gender: {{ person.gender }}
+            </div>
+            <div *ngIf="person && person.homepage">
+              Website:
+              <a
+                href="{{ person.homepage }}"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                >{{ person.homepage }}</a
+              >
+            </div>
+            <div *ngIf="person && person.known_for_department">
+              Known for: {{ person.known_for_department }}
+            </div>
+            <div *ngIf="person && person.also_known_as.length > 0">
+              Also Known as: {{ person.also_known_as }}
+            </div>
+
+            <div class="button-group" style="column-gap: 5px; margin-top: 10px">
+              <fa-icon
+                *ngIf="person && person.imdb"
+                [icon]="faImdb"
+                class="fa-2x custom-icon"
+                style="color: #e3b73c"
+                placement="top"
+                ngbPopover="Visit IMDB"
+                triggers="mouseenter:mouseleave"
+                (click)="goToLink(person.imdb)"
+              ></fa-icon>
+              <fa-icon
+                *ngIf="person && person.instagram"
+                [icon]="faInstagram"
+                class="fa-2x custom-icon"
+                style="color: #9c399c"
+                placement="top"
+                ngbPopover="Visit Instagram"
+                triggers="mouseenter:mouseleave"
+                (click)="goToLink(person.instagram)"
+              ></fa-icon>
+              <fa-icon
+                *ngIf="person && person.facebook"
+                [icon]="faFacebook"
+                class="fa-2x custom-icon"
+                style="color: #3310e2"
+                placement="top"
+                ngbPopover="Visit Facebook"
+                triggers="mouseenter:mouseleave"
+                (click)="goToLink(person.facebook)"
+              ></fa-icon>
+              <fa-icon
+                *ngIf="person && person.twitter"
+                [icon]="faTwitter"
+                class="fa-2x custom-icon"
+                style="color: #4090fa"
+                placement="top"
+                ngbPopover="Visit Twitter"
+                triggers="mouseenter:mouseleave"
+                (click)="goToLink(person.twitter)"
+              ></fa-icon>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="person && person.biography" class="biography-container">
+          <div class="model-title">Biography</div>
+          <p class="model-light-text">
+            {{ person.biography }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<!-- {{ category }} -->

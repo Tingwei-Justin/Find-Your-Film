@@ -1,0 +1,66 @@
+.review-card-container {
+  width: 100%;
+  color: black;
+  display: grid;
+  row-gap: 20px;
+}
+.review-card-item {
+  /* display: grid;
+  grid-template-columns: 1fr 5fr; */
+  background-color: white;
+  border-radius: 10px;
+  /* padding: 20px 40px; */
+}
+
+.content-container {
+  display: grid;
+  row-gap: 15px;
+}
+
+.review-content {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.review-title {
+  /* margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: flex-end;
+  justify-content: start; */
+}
+
+/* .review-title > * {
+  vertical-align: sub;
+} */
+
+.review-title-text {
+  font-size: 20px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  align-self: flex-end;
+}
+
+.review-title-rate {
+  background-color: black;
+  color: white;
+  border-radius: 30px;
+  border: none;
+  padding: 5px 15px;
+  align-self: flex-end;
+}
+
+.review-time {
+  color: gray;
+}
+
+.rest-link {
+  text-decoration: underline;
+  color: indigo;
+}
+
+.rest-link:hover {
+  cursor: pointer;
+}

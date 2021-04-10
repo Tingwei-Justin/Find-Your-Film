@@ -1,0 +1,32 @@
+.form-control {
+  width: 300px;
+}
+
+::ng-deep .template {
+  color: white;
+}
+
+::ng-deep .dropdown-menu {
+  border: solid 1px white;
+}
+::ng-deep .nav-link {
+  text-align: end;
+}
+
+.form-control {
+  width: 260px;
+  border: none;
+  border-radius: 0;
+  border-bottom: white solid 2px;
+  background-color: #020c20;
+  color: white;
+}
+
+.form-control:focus {
+  border-color: inherit;
+  box-shadow: none;
+}
+/* .template {
+  background-color: yellow;
+  width: 100%;
+} */

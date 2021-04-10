@@ -1,0 +1,209 @@
+.detail-page-container {
+  width: 100%;
+  color: white;
+  /* display: grid;
+  justify-items: center; */
+  /* position: relative; */
+  /* padding: 40px 180px; */
+}
+
+.top-grid-container {
+  margin-bottom: 20px;
+  min-height: 40vh;
+  /* column-gap: 40px; */
+  /* width: 100%; */
+  /* display: grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: 40px;
+  margin-bottom: 20px; */
+}
+
+.right-container {
+  /* max-width: 400px; */
+  display: grid;
+  row-gap: 8px;
+  align-content: flex-start;
+}
+
+.title {
+  font-size: 48px;
+  letter-spacing: 3px;
+  /* word-spacing: 10px; */
+  line-height: 55px;
+}
+
+.tagline {
+  font-size: 22px;
+  font-weight: 300;
+}
+
+.tag {
+  font-size: 24px;
+  font-weight: 300;
+  margin-top: 10px;
+}
+
+.language,
+.generes {
+  font-size: 20px;
+}
+
+.button-container {
+  margin-top: 15px;
+}
+
+.alert {
+  margin-top: 10px;
+}
+.button-text {
+  letter-spacing: 1px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.mid-title {
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.mid-content {
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 300;
+  text-align: justify;
+}
+
+.content-color {
+  color: rgb(197, 197, 197);
+}
+
+.middle-grid-container {
+  display: grid;
+  row-gap: 35px;
+}
+
+.button-group {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  justify-content: flex-start;
+  column-gap: 10px;
+}
+
+.bottom-grid-container {
+  margin-top: 40px;
+}
+
+.cast-section {
+  margin-top: 40px;
+  /* width: 100%; */
+}
+
+.scroll-card-container {
+  /* width: 1000px; */
+  overflow: auto;
+}
+
+/* .card-body {
+    min-height: 300px;
+    min-width: 300px;
+    margin-right: 5px;
+} */
+
+/* .bottom-title {
+  font-size: x-large;
+  font-weight: 400;
+  letter-spacing: 1px;
+} */
+
+.custom-card {
+  /* width: 200px; */
+  /* height: 300px; */
+  border-radius: 10px;
+  overflow: hidden;
+  border: none;
+  /* margin-right: 20px; */
+  cursor: pointer;
+}
+
+/* .custom-card-img-top {
+  width: 200px;
+} */
+
+.card-text {
+  color: black;
+}
+
+.actor-name {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.card-body {
+  text-align: center;
+  padding: 10px;
+}
+
+.modal-body-top-container {
+  /* display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 40px;
+  margin-right: 40px;
+  justify-content: start; */
+}
+
+.model-title {
+  margin-top: 10px;
+  font-size: 30px;
+}
+
+.model-light-text {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.custom-icon:hover {
+  cursor: pointer;
+}
+
+.custom-scrollbar-cast {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+/* scrollbar width */
+.custom-scrollbar-cast::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* scrollbar track */
+.custom-scrollbar-cast::-webkit-scrollbar-track {
+  /* background: #eee; */
+  border: 1px solid rgb(175, 175, 175);
+  border-radius: 1rem;
+}
+
+/* scrollbar handle */
+.custom-scrollbar-cast::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: rgb(175, 175, 175);
+}
+
+.custom-scrollbar {
+  max-height: 100vh;
+  overflow-y: scroll;
+}
+/* scrollbar width */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* scrollbar track */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+/* scrollbar handle */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: rgb(175, 175, 175);
+}

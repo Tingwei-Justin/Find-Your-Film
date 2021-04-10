@@ -1,0 +1,38 @@
+<div class="mylist-page">
+  <div *ngIf="watchList == null">
+    <div class="empty-list">No items found in Watchlist.</div>
+  </div>
+
+  <div *ngIf="watchList != null" class="main-container">
+    <div class="title">My WatchList</div>
+    <div class="watchlist-container row justify-content-start mt-3">
+      <div
+        class="item-container col-lg-2 py-5 px-3"
+        *ngFor="let item of watchList"
+        (mouseover)="hovered = true; cur_id = item.id"
+        (mouseout)="hovered = false; cur_id = -1"
+      >
+        <a href="/watch/{{ item.media_type }}/{{ item.id }}">
+          <div class="image-container">
+            <div
+              [ngStyle]="{
+                visibility:
+                  isMobile || (hovered && cur_id == item.id)
+                    ? 'visible'
+                    : 'hidden'
+              }"
+              class="caption-container"
+            >
+              <div class="carousel-caption-custom d-flex align-items-end">
+                <div class="carousel-caption-text m-3">
+                  {{ item.title || item.name }}
+                </div>
+              </div>
+            </div>
+            <img class="carousel-image" [src]="item.poster_path" />
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

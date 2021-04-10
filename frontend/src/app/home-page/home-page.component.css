@@ -1,0 +1,10 @@
+.home-page {
+  background-color: #060a30;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+}
+
+.media-container {
+  width: 80%;
+}

@@ -1,0 +1,87 @@
+<div class="carsousel-section-container">
+  <div *ngIf="totalData.length > 0">
+    <h1 class="title ml-2 mb-4">{{ category.name }}</h1>
+
+    <ngb-carousel
+      *ngIf="isMobile"
+      [showNavigationIndicators]="!isMobile"
+      [interval]="5000"
+      [pauseOnHover]="true"
+      [pauseOnFocus]="true"
+    >
+      <ng-template ngbSlide *ngFor="let item of totalData; index as i">
+        <div class="">
+          <a
+            href="/watch/{{ item.media_type }}/{{ item.id }}"
+            (mouseover)="hovered = true; cur_id = i"
+            (mouseout)="hovered = false; cur_id = -1"
+          >
+            <div class="image-container item-container mx-5">
+              <div
+                class="caption-container"
+                [ngStyle]="{
+                  visibility:
+                    isMobile || (hovered && cur_id == i) ? 'visible' : 'hidden'
+                }"
+              >
+                <div class="carousel-caption-custom d-flex align-items-end">
+                  <div class="carousel-caption-text m-4">
+                    {{ item.title || item.name }}
+                  </div>
+                </div>
+              </div>
+
+              <img class="carousel-image" [src]="item.poster_path" />
+            </div>
+          </a>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+
+    <!-- Desktop section : multiple images per slide -->
+    <ngb-carousel
+      *ngIf="!isMobile"
+      [showNavigationIndicators]="!isMobile"
+      [interval]="5000"
+      [pauseOnHover]="true"
+      [pauseOnFocus]="true"
+    >
+      <ng-template ngbSlide *ngFor="let group of itemsFormatted">
+        <div class="d-flex justify-content-center">
+          <div class="slide-container row justify-content-start mt-3">
+            <div
+              class="item-container col-lg-2 mb-5 px-3"
+              *ngFor="let item of group; index as i"
+            >
+              <a
+                href="/watch/{{ item.media_type }}/{{ item.id }}"
+                (mouseover)="hovered = true; cur_id = i"
+                (mouseout)="hovered = false; cur_id = -1"
+              >
+                <div class="image-container">
+                  <div
+                    class="caption-container"
+                    [ngStyle]="{
+                      visibility:
+                        isMobile || (hovered && cur_id == i)
+                          ? 'visible'
+                          : 'hidden'
+                    }"
+                  >
+                    <div class="carousel-caption-custom d-flex align-items-end">
+                      <div class="carousel-caption-text m-3">
+                        {{ item.title || item.name }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <img class="carousel-image" [src]="item.poster_path" />
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</div>

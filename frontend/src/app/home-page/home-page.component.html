@@ -1,0 +1,35 @@
+<div class="home-page">
+  <app-carousel [isMobile]="isMobile"></app-carousel>
+  <div class="media-container">
+    <app-carousel-section
+      *ngIf="cachedCategory.cached != null"
+      [category]="cachedCategory"
+      [isMobile]="isMobile"
+    ></app-carousel-section>
+
+    <app-carousel-section
+      [category]="categories.popular_movies"
+      [isMobile]="isMobile"
+    ></app-carousel-section>
+    <app-carousel-section
+      [category]="categories.top_rated_movies"
+      [isMobile]="isMobile"
+    ></app-carousel-section>
+    <app-carousel-section
+      [category]="categories.trending_movies"
+      [isMobile]="isMobile"
+    ></app-carousel-section>
+    <app-carousel-section
+      [category]="categories.popular_tvs"
+      [isMobile]="isMobile"
+    ></app-carousel-section>
+    <app-carousel-section
+      [category]="categories.top_rated_tvs"
+      [isMobile]="isMobile"
+    ></app-carousel-section>
+    <app-carousel-section
+      [category]="categories.trending_tvs"
+      [isMobile]="isMobile"
+    ></app-carousel-section>
+  </div>
+</div>

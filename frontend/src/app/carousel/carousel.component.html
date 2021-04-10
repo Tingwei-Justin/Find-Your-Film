@@ -1,0 +1,36 @@
+<div class="carousel-container">
+  <ngb-carousel
+    #carousel
+    [interval]="5000"
+    [pauseOnHover]="pauseOnHover"
+    [pauseOnFocus]="pauseOnFocus"
+    [showNavigationIndicators]="!isMobile"
+    [ngStyle]="{ width: isMobile ? '85%' : '70%' }"
+  >
+    <ng-template ngbSlide *ngFor="let img of imageURLs; index as i">
+      <a
+        href="/watch/movie/{{ imageData[i].id }}"
+        (mouseover)="hovered = true; cur_id = i"
+        (mouseout)="hovered = false; cur_id = -1"
+      >
+        <div
+          [ngStyle]="{
+            visibility:
+              isMobile || (hovered && cur_id == i) ? 'visible' : 'hidden'
+          }"
+          class="caption-container"
+        >
+          <div class="carousel-caption-custom d-flex align-items-end">
+            <div class="carousel-caption-text mx-5 my-4">
+              {{ imageData[i].title }}
+            </div>
+          </div>
+        </div>
+
+        <div class="picsum-img-wrapper">
+          <img [src]="img" class="carousel-image" alt="NOWPLAY_IMAGE" />
+        </div>
+      </a>
+    </ng-template>
+  </ngb-carousel>
+</div>
